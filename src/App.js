@@ -1,26 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './index.css';
+import { useQuery } from 'react-query';
+
+const new_query = `
+{
+  foodspots {
+    edges {
+      node {
+        id
+        title
+        link
+      }
+    }
+  }
+}
+`;
 
 function App() {
+  const { data, isLoading, error } = useQuery('foodspots', () => {
+    return fetch('https://api.kuehlhaus-food.de/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: new_query }),
+    })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error('Error fetching data');
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => data.data);
+  });
+
+  if (isLoading) return 'Loading...';
+  if (error) return <pre>{error.message}</pre>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="bg-red-500 p-6 text-3xl font-bold underline">
-          Hello Tailwind CSS!
-        </h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {data.foodspots.edges.map((item) => {
+        return <li key={item.node.id}>{item.node.title}</li>;
+      })}
     </div>
   );
 }
