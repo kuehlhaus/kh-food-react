@@ -13,12 +13,16 @@ function Foodspot() {
       link
       title
       foodspot_daten {
-        bewertung
         adresse
+        bewertung
+        dineIn
         delivery
+        homepage
         mapsLink
         offnungszeiten
+        placeId
         preisklasse
+        takeout
         telefon
       }
     }
