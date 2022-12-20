@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useQuery } from 'react-query';
-import { json, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const new_query = `
@@ -109,7 +109,7 @@ function Home() {
   // - add filtered items to itemsArray
   let itemsArray = [];
   let itemsArrayCheck = (event) => {
-    dataArray.map((item, index) => {
+    dataArray.forEach((item, index) => {
       let newItem = {
         id: item.node.id,
         title: item.node.title,

@@ -1,8 +1,6 @@
 import { useQuery } from 'react-query';
 import { useLocation } from 'react-router-dom';
 
-import { PaperClipIcon } from '@heroicons/react/20/solid';
-
 function Foodspot() {
   const location = useLocation();
 
@@ -83,7 +81,7 @@ function Foodspot() {
           <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
             <dt className="text-sm font-medium text-gray-500">Delivery</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              {delivery == true ? 'true' : 'false'}
+              {delivery === true ? 'true' : 'false'}
             </dd>
           </div>
           <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
