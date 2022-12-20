@@ -1,11 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-button {
-  @apply mx-1;
-}
-
 .filterButtons {
   @apply w-[200px] border border-gray-200 p-3 h-fit flex flex-col;
 }
