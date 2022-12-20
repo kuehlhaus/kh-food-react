@@ -1,0 +1,16 @@
+.filterButtons {
+  @apply w-[200px] border border-gray-200 p-3 h-fit flex flex-col;
+}
+.filterButton,
+.filterButtonActive {
+  @apply w-[100%] mt-1 text-left hover:bg-gray-200;
+}
+.filterButtonActive {
+  @apply font-bold;
+}
+.filterButtonOff {
+  @apply mt-3 p-3 bg-blue-600 box-border text-white cursor-pointer;
+}
+.filterButtonOff:disabled {
+  @apply opacity-50 cursor-default;
+}
