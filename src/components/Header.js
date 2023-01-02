@@ -1,16 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
 
-// function Header() {
-//   return (
-//     <div>
-//       Header
-//       <Outlet />
-//     </div>
-//   );
-// }
-
-// export default Header;
-
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';

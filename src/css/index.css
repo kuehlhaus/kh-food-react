@@ -4,5 +4,6 @@
 
 @import 'filters.css';
 @import 'button.css';
-
-
+@import 'foodspots.css';
+@import 'foodspot.css';
+@import 'pagination.css';

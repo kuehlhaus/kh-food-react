@@ -1,34 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-
-const new_query = `
-{
-  foodspots {
-    edges {
-      node {
-        id
-        link
-        title
-        foodspot_daten {
-          adresse
-          bewertung
-          dineIn
-          delivery
-          homepage
-          mapsLink
-          offnungszeiten
-          placeId
-          preisklasse
-          takeout
-          telefon
-        }
-      }
-    }
-  }
-}
-`;
 
 function Home() {
   let [filter, setFilter] = useState({
@@ -39,36 +11,46 @@ function Home() {
   });
 
   let [isFilterActive, setIsFilterActive] = useState();
-  let [resultArray, setResultArray] = useState([]);
-
+  let [filteredArray, setFilteredArray] = useState([]);
+  let [dataArray, setDataArray] = useState([]);
+  let [currentPage, setCurrentPage] = useState(1);
+  let [recordsPerPage, setRecordsPerPage] = useState(1);
   let ref = useRef([]);
-  let radioBtns = ref.current.elements;
-
-  let setFilterOff = () => {
-    filter.delivery = false;
-    filter.dineIn = false;
-    filter.takeout = false;
-    setResultArray([]);
-    filterRadioBtnOff();
-  };
-
-  let filterRadioBtnOff = () => {
-    for (let key in radioBtns) {
-      if (radioBtns[key].hasOwnProperty('checked')) {
-        radioBtns[key].checked = false;
-      }
-    }
-  };
 
   useEffect(() => {
-    setIsFilterActive(resultArray.length ? true : false);
-  }, [resultArray]);
+    setIsFilterActive(filteredArray.length ? true : false);
+  }, [filteredArray]);
 
   const { data, isLoading, error } = useQuery('foodspots', () => {
     return fetch('https://api.kuehlhaus-food.de/wp/graphql', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: new_query }),
+      body: JSON.stringify({
+        query: `{
+        foodspots{
+          edges {
+            node {
+              id
+              link
+              title
+              foodspot_daten {
+                adresse
+                bewertung
+                dineIn
+                delivery
+                homepage
+                mapsLink
+                offnungszeiten
+                placeId
+                preisklasse
+                takeout
+                telefon
+              }
+            }
+          }
+        }
+      }`,
+      }),
     })
       .then((response) => {
         if (response.status >= 400) {
@@ -87,7 +69,16 @@ function Home() {
     return 'Error';
   }
 
-  let dataArray = data.foodspots.edges;
+  dataArray = data.foodspots.edges.map((item) => {
+    return {
+      id: item.node.id,
+      title: item.node.title,
+      delivery: item.node.foodspot_daten.delivery,
+      dineIn: item.node.foodspot_daten.dineIn,
+      takeout: item.node.foodspot_daten.takeout,
+      preisklasse: item.node.foodspot_daten.preisklasse,
+    };
+  });
 
   let filterToggle = (event) => {
     for (let key in filter) {
@@ -99,40 +90,39 @@ function Home() {
       }
     }
 
-    itemsArrayCheck();
-    itemsFilter(event);
+    ref.current = event.target;
 
+    itemsArrayCheck();
+    itemsFilter();
+    setCurrentPage(1);
     setFilter({ ...filter });
+  };
+
+  let setFilterOff = () => {
+    filter.delivery = false;
+    filter.dineIn = false;
+    filter.takeout = false;
+    filter.preisklasse = 0;
+    ref.current.checked = false;
+    setCurrentPage(1);
+    setFilteredArray([]);
   };
 
   // - Step 1
   // - add filtered items to itemsArray
   let itemsArray = [];
-  let itemsArrayCheck = (event) => {
-    dataArray.forEach((item, index) => {
-      let newItem = {
-        id: item.node.id,
-        title: item.node.title,
-        delivery: item.node.foodspot_daten.delivery,
-        dineIn: item.node.foodspot_daten.dineIn,
-        takeout: item.node.foodspot_daten.takeout,
-        preisklasse: item.node.foodspot_daten.preisklasse,
-      };
-
+  let itemsArrayCheck = () => {
+    dataArray.forEach((item) => {
       for (let key in filter) {
-        if (filter[key] && item.node.foodspot_daten[key] === filter[key]) {
-          // for in не подходит, надо чтоб итерировал каждый объект массива и проверил значения
-
+        if (filter[key] && item[key] === filter[key]) {
           if (itemsArray.length === 0) {
-            itemsArray.push(newItem);
+            itemsArray.push(item);
           }
-
           let obj = itemsArray.find((element) => {
-            return element.title === item.node.title;
+            return element.title === item.title;
           });
-
           if (obj === undefined) {
-            itemsArray.push(newItem);
+            itemsArray.push(item);
           }
         }
       }
@@ -141,9 +131,9 @@ function Home() {
 
   // - Step 2
   // - check items by filters
-  let itemsFilter = (event) => {
+  let itemsFilter = () => {
     let filtered = [];
-    itemsArray.map((item) => {
+    itemsArray.forEach((item) => {
       let checkAllFilters = [];
 
       for (let key in filter) {
@@ -157,102 +147,71 @@ function Home() {
       return checkAllFilters.includes(false) ? '' : filtered.push(item);
     });
 
-    setResultArray([...filtered]);
-  };
-
-  let FoodspotsList = () => {
-    if (isFilterActive) {
-      return resultArray.map((item) => {
-        return (
-          <Link
-            to={`/foodspot/` + item.id}
-            state={{ id: item.id }}
-            key={item.id}
-          >
-            <li className="flex p-5 mt-5 border border-b-gray-200">
-              <div>
-                <p className="text-xl">{item.title}</p>
-                <div className="flex justify-between text-sm text-gray-500">
-                  <div className="mr-3">
-                    Delivery: {JSON.stringify(item.delivery)}
-                  </div>
-                  <div className="mr-3">
-                    DineIn: {JSON.stringify(item.dineIn)}
-                  </div>
-                  <div className="mr-3">
-                    Takeout: {JSON.stringify(item.takeout)}
-                  </div>
-                  <div className="mr-3">
-                    Preisklasse: {JSON.stringify(item.preisklasse)}
-                  </div>
-                </div>
-              </div>
-            </li>
-          </Link>
-        );
-      });
-    } else {
-      return dataArray.map((item) => {
-        return (
-          <Link
-            to={`/foodspot/` + item.node.id}
-            state={{ id: item.node.id }}
-            key={item.node.id}
-          >
-            <li className="flex p-5 mt-5 border border-b-gray-200">
-              <div>
-                <p className="text-xl">{item.node.title}</p>
-                <div className="flex justify-between text-sm text-gray-500">
-                  <div className="mr-3">
-                    Delivery:{' '}
-                    {JSON.stringify(item.node.foodspot_daten.delivery)}
-                  </div>
-                  <div className="mr-3">
-                    DineIn: {JSON.stringify(item.node.foodspot_daten.dineIn)}
-                  </div>
-                  <div className="mr-3">
-                    Takeout: {JSON.stringify(item.node.foodspot_daten.takeout)}
-                  </div>
-                  <div className="mr-3">
-                    Preisklasse:{' '}
-                    {JSON.stringify(item.node.foodspot_daten.preisklasse)}
-                  </div>
-                </div>
-              </div>
-            </li>
-          </Link>
-        );
-      });
+    if (filtered.length > 0) {
+      setFilteredArray([...filtered]);
     }
   };
 
+  // Pagination
+  let indexOfLastRecord = currentPage * recordsPerPage;
+  let indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  let currentRecords;
+  let nPages;
+
+  if (isFilterActive) {
+    currentRecords = filteredArray.slice(indexOfFirstRecord, indexOfLastRecord);
+    nPages = Math.ceil(filteredArray.length / recordsPerPage);
+  } else {
+    currentRecords = dataArray.slice(indexOfFirstRecord, indexOfLastRecord);
+    nPages = Math.ceil(dataArray.length / recordsPerPage);
+  }
+
+  let pageNumbers = [...Array(nPages + 1).keys()].slice(1);
+
+  let nextPage = () => {
+    if (currentPage !== nPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  let prevPage = (event) => {
+    if (currentPage !== (0 || 1)) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  // Pagination
+
+  let Foodspots = () => {
+    return currentRecords.map((item, index) => {
+      return (
+        <Link to={`/foodspot/` + item.id} state={item.id} key={item.id}>
+          <li key={index}>{item.title}</li>
+        </Link>
+      );
+    });
+  };
+
   return (
-    <div>
-      <div className="flex justify-center my-[30px]">
-        <div className="filterButtons ">
-          <span className="font-bold">Filter</span>
+    <div className="flex justify-center my-[30px]">
+      <div className="filter-section">
+        <div className="filter-buttons">
+          <span>Filter</span>
           <button
             className={filter.delivery ? 'filterButtonActive' : 'filterButton'}
-            onClick={(event) => {
-              filterToggle(event);
-            }}
+            onClick={(event) => filterToggle(event)}
             value="delivery"
             type="button"
           >
             Delivery
           </button>
-
           <button
             className={filter.dineIn ? 'filterButtonActive' : 'filterButton'}
-            onClick={(event) => {
-              filterToggle(event);
-            }}
+            onClick={(event) => filterToggle(event)}
             value="dineIn"
             type="button"
           >
             DineIn
           </button>
-
           <button
             className={filter.takeout ? 'filterButtonActive' : 'filterButton'}
             onClick={(event) => filterToggle(event)}
@@ -261,12 +220,10 @@ function Home() {
           >
             Takeout
           </button>
-
-          <fieldset className="mt-5" ref={ref}>
+          <fieldset>
             <legend>Preisklasse</legend>
             <label htmlFor="pk-1">
               <input
-                className="mr-2"
                 onClick={(event) => filterToggle(event)}
                 value="preisklasse"
                 type="radio"
@@ -276,10 +233,8 @@ function Home() {
               />
               Klasse 1
             </label>
-            <br />
             <label htmlFor="pk-2">
               <input
-                className="mr-2"
                 onClick={(event) => filterToggle(event)}
                 value="preisklasse"
                 type="radio"
@@ -290,22 +245,60 @@ function Home() {
               Klasse 2
             </label>
           </fieldset>
+
           <button
-            className={!isFilterActive ? 'filterButtonOff' : 'filterButtonOff'}
+            className="filterButtonOff"
             disabled={!isFilterActive}
-            onClick={() => {
-              setFilterOff();
-            }}
+            onClick={() => setFilterOff()}
           >
             Filter Löschen
           </button>
         </div>
+      </div>
+      <div className="foodspots-section">
+        <div className="foodspots-section-title">
+          <h1>Foodspots</h1>
+          <label>
+            <select onChange={(e) => setRecordsPerPage(e.target.value)}>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </label>
+        </div>
 
-        <div className="foodspotslist w-[600px] box-border ml-[30px]">
-          <h1 className="font-bold text-xl">Foodspots</h1>
-          <ul>
-            <FoodspotsList />
-          </ul>
+        <ul>
+          <Foodspots />
+        </ul>
+        <div className="pagination-section">
+          <button
+            onClick={(event) => prevPage(event)}
+            disabled={currentPage === (0 || 1) ? true : false}
+          >
+            Prev
+          </button>
+
+          <div>
+            {pageNumbers.map((page, index) => {
+              return (
+                <i
+                  key={index}
+                  className={page === currentPage ? 'font-bold' : ''}
+                >
+                  {page}
+                </i>
+              );
+            })}
+          </div>
+
+          <button
+            onClick={nextPage}
+            disabled={currentPage === nPages ? true : false}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

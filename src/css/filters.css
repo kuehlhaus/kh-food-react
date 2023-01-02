@@ -1,15 +1,36 @@
-.filterButtons {
-  @apply w-[200px] border border-gray-200 p-3 h-fit flex flex-col;
+.filter-section {
+  @apply flex justify-center;
 }
+.filter-section span {
+  @apply font-bold;
+}
+
+.filter-buttons {
+  @apply flex flex-col;
+}
+
+.filter-buttons fieldset {
+  @apply flex flex-col mt-5;
+}
+.filter-buttons fieldset legend {
+  @apply font-bold;
+}
+.filter-buttons fieldset label {
+  @apply p-1 cursor-pointer;
+}
+.filter-buttons fieldset label input {
+  @apply mr-1;
+}
+
 .filterButton,
 .filterButtonActive {
-  @apply w-[100%] mt-1 text-left hover:bg-gray-200;
+  @apply w-[100%] bg-red-200 p-1 text-left;
 }
 .filterButtonActive {
   @apply font-bold;
 }
 .filterButtonOff {
-  @apply mt-3 p-3 bg-blue-600 box-border text-white cursor-pointer;
+  @apply text-white bg-blue-500 py-1 px-3 rounded-lg  cursor-pointer mt-5;
 }
 .filterButtonOff:disabled {
   @apply opacity-50 cursor-default;
