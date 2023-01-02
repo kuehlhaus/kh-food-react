@@ -1,0 +1,9 @@
+.pagination-section {
+  @apply flex justify-between my-[30px];
+}
+.pagination-section button {
+}
+
+.pagination-section i {
+  @apply mx-1;
+}

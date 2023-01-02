@@ -1,0 +1,15 @@
+.foodspots-section {
+  @apply w-[500px] box-border ml-[30px];
+}
+.foodspots-section-title {
+  @apply flex justify-between items-center;
+}
+.foodspots-section-title h1 {
+  @apply font-bold text-xl;
+}
+.foodspots-section-title select {
+  @apply cursor-pointer;
+}
+.foodspots-section li {
+  @apply border-b w-[100%] py-[15px];
+}
