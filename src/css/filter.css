@@ -1,0 +1,59 @@
+.filterSection {
+  @apply w-[25%] mr-[12.5%];
+}
+.filterSection span {
+  @apply font-theserif text-[22px];
+}
+.filterSection > div {
+  @apply flex justify-between items-center;
+}
+.filterButtonOff {
+  @apply bg-[var(--orange)] text-white rounded-full py-[7px] px-[20px];
+}
+.filterButtonOff:disabled {
+  @apply opacity-20 cursor-default;
+}
+.filterCheckbox {
+  @apply flex items-center text-[18px]  mt-[15px];
+}
+.filterCheckbox input {
+  @apply hidden;
+}
+.filterCheckbox div {
+  @apply flex w-[16px] h-[16px] rounded-full border-[var(--darkgray)] border;
+}
+.filterCheckbox p {
+  @apply flex items-center cursor-pointer;
+}
+.filterCheckbox p.btnImg:before {
+  @apply content-[''] mx-[25px] bg-center bg-no-repeat w-[44px] h-[33px];
+}
+.filterCheckbox p#delivery:before {
+  @apply bg-[url('../assets/img/delivery.svg')];
+}
+.filterCheckbox p#dineIn:before {
+  @apply bg-[url('../assets/img/dineIn.svg')];
+}
+.filterCheckbox p#takeout:before {
+  @apply bg-[url('../assets/img/takeout.svg')];
+}
+
+.filterCheckbox input:checked ~ div:before {
+  @apply content-[''] w-[90%] h-[91%] rounded-full bg-[var(--orange)] m-auto;
+}
+.filterCheckbox input:checked ~ p {
+  @apply font-bold;
+}
+.filterButton,
+.filterButtonActive {
+  @apply flex;
+}
+.filterButtonActive {
+  @apply text-red-500;
+}
+button {
+  @apply mx-1;
+}
+button:disabled {
+  @apply opacity-50 cursor-default;
+}

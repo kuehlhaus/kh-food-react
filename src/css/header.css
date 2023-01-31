@@ -1,0 +1,20 @@
+/* position absolute relative etc... */
+/* либо svg как динамический блок и его размер подгонять от размера экрана и задать max-width */
+
+header {
+  /* @apply 2xl:w-headerXxl 2xl:h-headerXxl xl:w-headerXl xl:h-headerXl
+  bg-[url('/src/assets/img/headerHome.svg')] bg-no-repeat bg-center bg-fill my-0 mx-auto bg-gray-300; */
+  @apply max-w-[1915px] m-auto flex justify-center;
+}
+
+.headerHome {
+  /* @apply my-0 mx-auto flex justify-end py-[30px] px-[50px]; */
+  @apply relative;
+}
+
+.headerLogoSmall {
+  @apply absolute top-[30px] right-[50px];
+}
+
+/* @media screen and (min-width: 1536px) {
+} */

@@ -14,7 +14,7 @@ function Home() {
   let [filteredArray, setFilteredArray] = useState([]);
   let [dataArray, setDataArray] = useState([]);
   let [currentPage, setCurrentPage] = useState(1);
-  let [recordsPerPage, setRecordsPerPage] = useState(1);
+  let [recordsPerPage, setRecordsPerPage] = useState(3);
   let ref = useRef([]);
 
   useEffect(() => {
@@ -77,20 +77,28 @@ function Home() {
       dineIn: item.node.foodspot_daten.dineIn,
       takeout: item.node.foodspot_daten.takeout,
       preisklasse: item.node.foodspot_daten.preisklasse,
+      adresse: item.node.foodspot_daten.adresse,
     };
   });
 
   let filterToggle = (event) => {
     for (let key in filter) {
-      if (event.target.value === key && event.target.type === 'button') {
-        filter[key] = !filter[key];
-      }
-      if (event.target.value === key && event.target.type === 'radio') {
-        filter[key] = parseInt(event.target.attributes.preisklasse.value);
+      if (event.target.attributes.name.value === key) {
+        let dataType = parseInt(event.target.attributes.value.value);
+
+        if (dataType && filter[key] != dataType) {
+          filter[key] = dataType;
+        } else if (dataType && filter[key] === dataType) {
+          filter[key] = 0;
+        } else {
+          filter[key] = !filter[key];
+        }
       }
     }
 
     ref.current = event.target;
+
+    console.log(ref);
 
     itemsArrayCheck();
     itemsFilter();
@@ -147,9 +155,7 @@ function Home() {
       return checkAllFilters.includes(false) ? '' : filtered.push(item);
     });
 
-    if (filtered.length > 0) {
-      setFilteredArray([...filtered]);
-    }
+    filtered.length ? setFilteredArray([...filtered]) : setFilteredArray([]);
   };
 
   // Pagination
@@ -181,124 +187,177 @@ function Home() {
   };
   // Pagination
 
-  let Foodspots = () => {
-    return currentRecords.map((item, index) => {
-      return (
-        <Link to={`/foodspot/` + item.id} state={item.id} key={item.id}>
-          <li key={index}>{item.title}</li>
-        </Link>
-      );
-    });
-  };
-
   return (
-    <div className="flex justify-center my-[30px]">
-      <div className="filter-section">
-        <div className="filter-buttons">
+    <div className="contentWrapper max-w-[1915px] mx-auto my-[100px] flex px-[100px]">
+      <div className="filterSection">
+        <div>
           <span>Filter</span>
-          <button
-            className={filter.delivery ? 'filterButtonActive' : 'filterButton'}
-            onClick={(event) => filterToggle(event)}
-            value="delivery"
-            type="button"
-          >
-            Delivery
-          </button>
-          <button
-            className={filter.dineIn ? 'filterButtonActive' : 'filterButton'}
-            onClick={(event) => filterToggle(event)}
-            value="dineIn"
-            type="button"
-          >
-            DineIn
-          </button>
-          <button
-            className={filter.takeout ? 'filterButtonActive' : 'filterButton'}
-            onClick={(event) => filterToggle(event)}
-            value="takeout"
-            type="button"
-          >
-            Takeout
-          </button>
-          <fieldset>
-            <legend>Preisklasse</legend>
-            <label htmlFor="pk-1">
-              <input
-                onClick={(event) => filterToggle(event)}
-                value="preisklasse"
-                type="radio"
-                preisklasse="1"
-                id="pk-1"
-                name="qq"
-              />
-              Klasse 1
-            </label>
-            <label htmlFor="pk-2">
-              <input
-                onClick={(event) => filterToggle(event)}
-                value="preisklasse"
-                type="radio"
-                preisklasse="2"
-                id="pk-2"
-                name="qq"
-              />
-              Klasse 2
-            </label>
-          </fieldset>
-
           <button
             className="filterButtonOff"
             disabled={!isFilterActive}
             onClick={() => setFilterOff()}
           >
-            Filter Löschen
+            x Filter löschen
           </button>
         </div>
-      </div>
-      <div className="foodspots-section">
-        <div className="foodspots-section-title">
-          <h1>Foodspots</h1>
-          <label>
-            <select onChange={(e) => setRecordsPerPage(e.target.value)}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </label>
-        </div>
 
-        <ul>
-          <Foodspots />
-        </ul>
-        <div className="pagination-section">
-          <button
-            onClick={(event) => prevPage(event)}
-            disabled={currentPage === (0 || 1) ? true : false}
+        <label className="filterCheckbox">
+          <input type="checkbox" checked={filter.delivery} />
+          <div></div>
+          <p
+            onClick={(event) => filterToggle(event)}
+            name="delivery"
+            value="delivery"
+            className="btnImg"
+            id="delivery"
           >
-            Prev
-          </button>
+            Delivery
+          </p>
+        </label>
 
-          <div>
-            {pageNumbers.map((page, index) => {
+        <label className="filterCheckbox">
+          <input type="checkbox" checked={filter.dineIn} />
+          <div></div>
+          <p
+            onClick={(event) => filterToggle(event)}
+            name="dineIn"
+            value="dineIn"
+            className="btnImg"
+            id="dineIn"
+          >
+            DineIn
+          </p>
+        </label>
+
+        <label className="filterCheckbox">
+          <input type="checkbox" checked={filter.takeout} />
+          <div></div>
+          <p
+            onClick={(event) => filterToggle(event)}
+            name="takeout"
+            value="takeout"
+            className="btnImg"
+            id="takeout"
+          >
+            Takeout
+          </p>
+        </label>
+
+        <div className="mt-[45px]">
+          <span>Preisklasse</span>
+        </div>
+
+        <label className="filterCheckbox">
+          <input
+            type="checkbox"
+            checked={filter.preisklasse === 1 ? true : false}
+          />
+          <div></div>
+          <p
+            onClick={(event) => filterToggle(event)}
+            name="preisklasse"
+            value="1"
+            className="ml-[20px]"
+          >
+            €
+          </p>
+        </label>
+
+        <label className="filterCheckbox">
+          <input
+            type="checkbox"
+            checked={filter.preisklasse === 2 ? true : false}
+          />
+          <div></div>
+          <p
+            onClick={(event) => filterToggle(event)}
+            name="preisklasse"
+            value="2"
+            className="ml-[20px]"
+          >
+            €€
+          </p>
+        </label>
+
+        <div className="mt-[45px]">
+          <span>Results</span>
+        </div>
+
+        <label>
+          <select onChange={(e) => setRecordsPerPage(e.target.value)}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </label>
+      </div>
+      <div className="foodspotsSectionWrapper">
+        <div className="foodspotsSection">
+          <h2>Foodspots</h2>
+          <ul>
+            {currentRecords.map((item, index) => {
               return (
-                <i
-                  key={index}
-                  className={page === currentPage ? 'font-bold' : ''}
-                >
-                  {page}
-                </i>
+                <Link to={`/foodspot/` + item.id} state={item.id} key={item.id}>
+                  <li key={index}>
+                    <span id="foodspotTitle">
+                      {item.title}
+                      <em id={'preisklasse_' + item.preisklasse}></em>
+                    </span>
+                    <i>{item.adresse}</i>
+                    <div>
+                      <span
+                        className={
+                          item.delivery ? 'delivery on' : 'delivery off'
+                        }
+                      >
+                        <p>Delivery</p>
+                      </span>
+                      <span
+                        className={item.dineIn ? 'dineIn on' : 'dineIn off'}
+                      >
+                        <p>DineIn</p>
+                      </span>
+                      <span
+                        className={item.takeout ? 'takeout on' : 'takeout off'}
+                      >
+                        <p>Takeout</p>
+                      </span>
+                    </div>
+                  </li>
+                </Link>
               );
             })}
-          </div>
+          </ul>
+          <div className="pagination-section">
+            <button
+              onClick={(event) => prevPage(event)}
+              disabled={currentPage === (0 || 1) ? true : false}
+            >
+              Prev
+            </button>
 
-          <button
-            onClick={nextPage}
-            disabled={currentPage === nPages ? true : false}
-          >
-            Next
-          </button>
+            <div>
+              {pageNumbers.map((page, index) => {
+                return (
+                  <i
+                    key={index}
+                    className={page === currentPage ? 'pageActive' : ''}
+                  >
+                    {page}
+                  </i>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={nextPage}
+              disabled={currentPage === nPages ? true : false}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
