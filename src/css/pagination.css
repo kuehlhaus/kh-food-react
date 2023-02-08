@@ -9,6 +9,6 @@
   @apply mx-1 not-italic px-[12px] py-[5px] border-[2px] border-[var(--darkgray)] rounded-full;
 }
 
-.pageActive {
+.currentPage {
   @apply bg-[var(--darkgray)] text-white;
 }
