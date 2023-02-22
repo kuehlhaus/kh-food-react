@@ -14,6 +14,7 @@ module.exports = {
       },
       backgroundSize: {
         fill: 'auto 100%',
+        footer: 'cover',
       },
       width: {
         headerXxl: '1536px',

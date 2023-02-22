@@ -100,7 +100,7 @@ function Home() {
   });
 
   return (
-    <div className="contentWrapper max-w-[1915px] mx-auto my-[100px] flex px-[100px]">
+    <div className="contentWrapper">
       <Filter
         isFilterActive={isFilterActive}
         filter={filter}

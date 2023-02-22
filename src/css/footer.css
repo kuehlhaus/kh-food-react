@@ -1,5 +1,6 @@
 footer {
-  @apply w-full flex items-center px-[40px] bg-[var(--darkgray)] h-[115px] uppercase text-[var(--gray)] absolute bottom-0;
+  @apply w-full flex items-center px-[40px] bg-[var(--darkgray)] h-auto uppercase text-[var(--gray)] absolute 
+  bottom-0 h-[115px];
 }
 
 footer button {

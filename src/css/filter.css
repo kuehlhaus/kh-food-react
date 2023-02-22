@@ -1,11 +1,14 @@
 .filterSection {
-  @apply w-[25%] mr-[12.5%];
+  @apply lg:w-[25%] lg:mr-[12.5%] w-full;
 }
-.filterSection span {
+.filterWrap {
+  @apply mb-[45px];
+}
+.filterSectionTitle {
+  @apply flex justify-between items-center w-full;
+}
+.filterSectionTitle span {
   @apply font-theserif text-[22px];
-}
-.filterSection > div {
-  @apply flex justify-between items-center;
 }
 .filterButtonOff {
   @apply bg-[var(--orange)] text-white rounded-full py-[7px] px-[20px];
@@ -14,46 +17,63 @@
   @apply opacity-20 cursor-default;
 }
 .filterCheckbox {
-  @apply flex items-center text-[18px]  mt-[15px];
+  @apply flex items-center text-[18px] mt-[15px];
 }
 .filterCheckbox input {
   @apply hidden;
 }
 .filterCheckbox div {
-  @apply flex w-[16px] h-[16px] rounded-full border-[var(--darkgray)] border;
+  @apply lg:flex lg:w-[16px] lg:h-[16px] lg:rounded-full lg:border-[var(--darkgray)] lg:border;
 }
-.filterCheckbox p {
-  @apply flex items-center cursor-pointer;
+.filterCheckbox span {
+  @apply flex items-center cursor-pointer lg:flex-row flex-col;
 }
-.filterCheckbox p.btnImg:before {
-  @apply content-[''] mx-[25px] bg-center bg-no-repeat w-[44px] h-[33px];
+.filterCheckbox span.btnImg:before {
+  @apply content-[''] lg:ml-[25px] bg-center bg-no-repeat w-[44px] h-[33px];
 }
-.filterCheckbox p#delivery:before {
+.filterCheckbox span:after {
+  @apply lg:px-[25px];
+}
+.filterCheckbox span#delivery:before {
   @apply bg-[url('../assets/img/delivery.svg')];
 }
-.filterCheckbox p#dineIn:before {
+.filterCheckbox span#delivery:after {
+  @apply content-['Delivery'];
+}
+.filterCheckbox span#dineIn:before {
   @apply bg-[url('../assets/img/dineIn.svg')];
 }
-.filterCheckbox p#takeout:before {
+.filterCheckbox span#dineIn:after {
+  @apply content-['DineIn'];
+}
+.filterCheckbox span#takeout:before {
   @apply bg-[url('../assets/img/takeout.svg')];
 }
-
+.filterCheckbox span#takeout:after {
+  @apply content-['Takeout'];
+}
+.filterCheckbox span#pr1:after {
+  @apply content-['€'];
+}
+.filterCheckbox span#pr2:after {
+  @apply content-['€€'];
+}
 .filterCheckbox input:checked ~ div:before {
   @apply content-[''] w-[90%] h-[91%] rounded-full bg-[var(--orange)] m-auto;
 }
-.filterCheckbox input:checked ~ p {
+.filterCheckbox input:checked ~ span p {
   @apply font-bold;
 }
 .filterButton,
 .filterButtonActive {
   @apply flex;
 }
-.filterButtonActive {
-  @apply text-red-500;
-}
 button {
   @apply mx-1;
 }
 button:disabled {
   @apply opacity-50 cursor-default;
+}
+.filterWrap select {
+  @apply border border-[var(--gray)] px-[15px] py-[5px] mt-[15px] w-full rounded-full cursor-pointer;
 }

@@ -8,12 +8,13 @@ import Home from './pages/Home';
 import Foodspot from './pages/Foodspot';
 import Header from './components/Header';
 import Error from './pages/Error';
+import Footer from './components/Footer';
 
 const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Header />}>
@@ -23,7 +24,7 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

@@ -34,6 +34,7 @@
 @import 'foodspot.css';
 @import 'pagination.css';
 @import 'footer.css';
+@import 'responsive.css';
 
 :root {
   --orange: #ff6600;
@@ -44,5 +45,9 @@
 }
 
 #root {
-  @apply relative min-h-[100vh] pb-[115px];
+  @apply relative min-h-[100vh] pb-[165px] lg:pb-[115px];
+}
+
+.clr {
+  @apply w-full h-[100px] bg-gray-300;
 }

@@ -1,5 +1,8 @@
+.contentWrapper {
+  @apply lg:max-w-[1915px] mx-auto flex lg:my-[100px] lg:px-[100px] px-[5%];
+}
 .foodspotsSectionWrapper {
-  @apply w-[50%] flex justify-center;
+  @apply w-auto flex justify-center lg:max-w-[50%];
 }
 .foodspotsSection {
   @apply w-full;
@@ -8,13 +11,13 @@
   @apply flex flex-col;
 }
 .foodspotsSection ul a {
-  @apply my-[25px];
+  @apply lg:my-[25px] mt-[25px];
 }
 .foodspotsSection ul li {
-  @apply border-[2px] border-[var(--darkgray)] rounded-[10px]  py-[20px] px-[70px];
+  @apply border-[2px] border-[var(--darkgray)] rounded-[10px] lg:py-[20px] lg:px-[70px] pt-[35px] pb-[20px] px-[20px];
 }
 .foodspotsSection ul li span#foodspotTitle {
-  @apply text-[32px] font-bold;
+  @apply text-[23px] lg:text-[32px] font-bold;
 }
 .foodspotsSection ul li span#foodspotTitle em {
   @apply ml-[30px];
@@ -26,7 +29,7 @@
   @apply content-[url('../assets/img/preisklasse_2.svg')];
 }
 .foodspotsSection ul li i {
-  @apply flex text-[16px] not-italic my-[10px];
+  @apply flex text-[12px] lg:text-[16px] not-italic my-[10px];
 }
 .foodspotsSection ul li div {
   @apply flex items-center flex-wrap;

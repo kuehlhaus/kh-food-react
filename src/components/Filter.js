@@ -89,107 +89,103 @@ function Filter({
 
   return (
     <div className="filterSection">
-      <div>
-        <span>Filter</span>
-        <button
-          className="filterButtonOff"
-          disabled={!isFilterActive}
-          onClick={() => setFilterOff()}
-        >
-          x Filter löschen
-        </button>
+      <div className="filterWrap">
+        <div className="filterSectionTitle">
+          <span>Filter</span>
+          <button
+            className="filterButtonOff"
+            disabled={!isFilterActive}
+            onClick={() => setFilterOff()}
+          >
+            x Filter löschen
+          </button>
+        </div>
+
+        <div className="filterCheckbox">
+          <input type="checkbox" checked={filter.delivery} />
+          <div></div>
+          <span
+            onClick={(event) => filterToggle(event)}
+            name="delivery"
+            value="delivery"
+            className="btnImg"
+            id="delivery"
+          ></span>
+        </div>
+
+        <div className="filterCheckbox">
+          <input type="checkbox" checked={filter.dineIn} />
+          <div></div>
+          <span
+            onClick={(event) => filterToggle(event)}
+            name="dineIn"
+            value="dineIn"
+            className="btnImg"
+            id="dineIn"
+          ></span>
+        </div>
+
+        <div className="filterCheckbox">
+          <input type="checkbox" checked={filter.takeout} />
+          <div></div>
+          <span
+            onClick={(event) => filterToggle(event)}
+            name="takeout"
+            value="takeout"
+            className="btnImg"
+            id="takeout"
+          ></span>
+        </div>
       </div>
 
-      <label className="filterCheckbox">
-        <input type="checkbox" checked={filter.delivery} />
-        <div></div>
-        <p
-          onClick={(event) => filterToggle(event)}
-          name="delivery"
-          value="delivery"
-          className="btnImg"
-          id="delivery"
-        >
-          Delivery
-        </p>
-      </label>
+      <div className="filterWrap">
+        <div className="filterSectionTitle">
+          <span>Preisklasse</span>
+        </div>
 
-      <label className="filterCheckbox">
-        <input type="checkbox" checked={filter.dineIn} />
-        <div></div>
-        <p
-          onClick={(event) => filterToggle(event)}
-          name="dineIn"
-          value="dineIn"
-          className="btnImg"
-          id="dineIn"
-        >
-          DineIn
-        </p>
-      </label>
+        <div className="filterCheckbox">
+          <input
+            type="checkbox"
+            checked={filter.preisklasse === 1 ? true : false}
+          />
+          <div></div>
+          <span
+            onClick={(event) => filterToggle(event)}
+            name="preisklasse"
+            value="1"
+            id="pr1"
+          ></span>
+        </div>
 
-      <label className="filterCheckbox">
-        <input type="checkbox" checked={filter.takeout} />
-        <div></div>
-        <p
-          onClick={(event) => filterToggle(event)}
-          name="takeout"
-          value="takeout"
-          className="btnImg"
-          id="takeout"
-        >
-          Takeout
-        </p>
-      </label>
-
-      <div className="mt-[45px]">
-        <span>Preisklasse</span>
+        <div className="filterCheckbox">
+          <input
+            type="checkbox"
+            checked={filter.preisklasse === 2 ? true : false}
+          />
+          <div></div>
+          <span
+            onClick={(event) => filterToggle(event)}
+            name="preisklasse"
+            value="2"
+            id="pr2"
+          ></span>
+        </div>
       </div>
 
-      <label className="filterCheckbox">
-        <input
-          type="checkbox"
-          checked={filter.preisklasse === 1 ? true : false}
-        />
-        <div></div>
-        <p
-          onClick={(event) => filterToggle(event)}
-          name="preisklasse"
-          value="1"
-          className="ml-[20px]"
-        >
-          €
-        </p>
-      </label>
+      <div className="filterWrap">
+        <div className="filterSectionTitle">
+          <span>Results</span>
+        </div>
 
-      <label className="filterCheckbox">
-        <input
-          type="checkbox"
-          checked={filter.preisklasse === 2 ? true : false}
-        />
-        <div></div>
-        <p
-          onClick={(event) => filterToggle(event)}
-          name="preisklasse"
-          value="2"
-          className="ml-[20px]"
-        >
-          €€
-        </p>
-      </label>
-
-      <div className="mt-[45px]">
-        <span>Results</span>
+        <label>
+          <select onChange={(e) => setRecordsPerPage(e.target.value)}>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </label>
       </div>
-
-      <label>
-        <select onChange={(e) => setRecordsPerPage(e.target.value)}>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </label>
     </div>
   );
 }
