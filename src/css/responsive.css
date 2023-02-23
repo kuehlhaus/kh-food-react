@@ -8,6 +8,15 @@
   .filterWrap {
     @apply flex flex-wrap;
   }
+  .filterSectionTitle {
+    @apply justify-between flex-row items-center;
+  }
+  .filterSectionTitle span {
+    @apply mr-[25px];
+  }
+  .filterButtonOff {
+    @apply mb-0;
+  }
   .filterCheckbox {
     @apply mr-[20px];
   }
@@ -41,4 +50,10 @@
   footer button {
     @apply hidden;
   }
+  footer a {
+    @apply mx-[20px];
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1132px) {
 }
