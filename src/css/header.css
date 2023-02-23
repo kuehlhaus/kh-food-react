@@ -1,0 +1,20 @@
+header {
+  /* @apply 2xl:w-headerXxl 2xl:h-headerXxl xl:w-headerXl xl:h-headerXl
+  bg-[url('/src/assets/img/headerHome.svg')] bg-no-repeat bg-center bg-fill my-0 mx-auto bg-gray-300; */
+  @apply max-w-[1915px] m-auto flex justify-center;
+}
+
+.headerHome {
+  /* @apply my-0 mx-auto flex justify-end py-[30px] px-[50px]; */
+  @apply relative w-full;
+}
+.headerHome img {
+  @apply w-full;
+}
+
+.headerLogoSmall {
+  @apply absolute top-[30px] right-[50px] w-auto !important;
+}
+.headerLogoSmallMobile {
+  @apply absolute top-[10px] right-[10px] w-auto !important;
+}

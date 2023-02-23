@@ -1,0 +1,44 @@
+@media screen and (max-width: 1023px) {
+  .contentWrapper {
+    @apply flex-col;
+  }
+  .filterSection {
+    @apply flex flex-col mt-[40px] mb-[35px];
+  }
+  .filterWrap {
+    @apply flex flex-wrap;
+  }
+  .filterCheckbox {
+    @apply mr-[20px];
+  }
+  .filterCheckbox span:after {
+    @apply border border-[var(--darkgray)] rounded-full italic mt-[5px] py-[5px] px-[15px];
+  }
+  .filterCheckbox span#pr1:after {
+    @apply p-[5px] w-[30px] h-[30px];
+  }
+  .filterCheckbox input:checked ~ span:after {
+    @apply bg-[var(--darkgray)] text-white font-bold;
+  }
+  .foodspotsSection ul li {
+    @apply relative;
+  }
+  .foodspotsSection ul li span#foodspotTitle em {
+    @apply absolute top-[10px] right-[10px];
+  }
+  .foodspotsSection ul li div {
+    @apply justify-between;
+  }
+  .foodspotsSection ul li div span {
+    @apply flex-col m-0;
+  }
+  .foodspotsSection ul li div span p {
+    @apply m-0;
+  }
+  footer {
+    @apply bg-[url('../assets/img/Pebble2.svg')] h-[125px] bg-transparent bg-no-repeat bg-footer justify-center mt-[40px];
+  }
+  footer button {
+    @apply hidden;
+  }
+}

@@ -1,8 +1,53 @@
 @tailwind base;
+@layer base {
+  html {
+    @apply font-thesansosf font-light text-[18px] leading-none text-[#4B4B4D];
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-theserif;
+  }
+  img {
+    display: unset;
+  }
+  h1 {
+    @apply text-[67px];
+  }
+  h2 {
+    @apply text-[40px];
+  }
+  p {
+    @apply text-[18px];
+  }
+}
 @tailwind components;
 @tailwind utilities;
 
-@import 'filters.css';
-@import 'button.css';
+@import 'fonts.css';
+@import 'header.css';
+@import 'filter.css';
+@import 'foodspots.css';
+@import 'foodspot.css';
+@import 'pagination.css';
+@import 'footer.css';
+@import 'responsive.css';
 
+:root {
+  --orange: #ff6600;
+  --darkgray: #4b4b4d;
+  --white: #ffffff;
+  --gray: #e2e2e2;
+  --black: #000000;
+}
 
+#root {
+  @apply relative min-h-[100vh] pb-[165px] lg:pb-[115px];
+}
+
+.clr {
+  @apply w-full h-[100px] bg-gray-300;
+}

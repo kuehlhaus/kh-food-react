@@ -1,0 +1,14 @@
+.pagination-section {
+  @apply flex justify-between items-center my-[30px];
+}
+.pagination-section button {
+  @apply border-[2px] border-[var(--darkgray)] rounded-full px-[12px] py-[5px];
+}
+
+.pagination-section i {
+  @apply mx-1 not-italic px-[12px] py-[5px] border-[2px] border-[var(--darkgray)] rounded-full;
+}
+
+.currentPage {
+  @apply bg-[var(--darkgray)] text-white;
+}
