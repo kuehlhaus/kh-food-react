@@ -43,7 +43,7 @@ function Pagination({
       </button>
 
       <div>
-        {pageNumbers.map((page, index) => {
+        {/* {pageNumbers.map((page, index) => {
           return (
             <i
               key={index}
@@ -52,7 +52,7 @@ function Pagination({
               {page}
             </i>
           );
-        })}
+        })} */}
       </div>
 
       <button

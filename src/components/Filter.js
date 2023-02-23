@@ -4,7 +4,6 @@ function Filter({
   isFilterActive,
   filter,
   setRecordsPerPage,
-
   setCurrentPage,
   setFilteredArray,
   setFilter,
@@ -102,7 +101,7 @@ function Filter({
         </div>
 
         <div className="filterCheckbox">
-          <input type="checkbox" checked={filter.delivery} />
+          <input type="checkbox" checked={filter.delivery} readOnly />
           <div></div>
           <span
             onClick={(event) => filterToggle(event)}
@@ -114,7 +113,7 @@ function Filter({
         </div>
 
         <div className="filterCheckbox">
-          <input type="checkbox" checked={filter.dineIn} />
+          <input type="checkbox" checked={filter.dineIn} readOnly />
           <div></div>
           <span
             onClick={(event) => filterToggle(event)}
@@ -126,7 +125,7 @@ function Filter({
         </div>
 
         <div className="filterCheckbox">
-          <input type="checkbox" checked={filter.takeout} />
+          <input type="checkbox" checked={filter.takeout} readOnly />
           <div></div>
           <span
             onClick={(event) => filterToggle(event)}
@@ -147,6 +146,7 @@ function Filter({
           <input
             type="checkbox"
             checked={filter.preisklasse === 1 ? true : false}
+            readOnly
           />
           <div></div>
           <span
@@ -161,6 +161,7 @@ function Filter({
           <input
             type="checkbox"
             checked={filter.preisklasse === 2 ? true : false}
+            readOnly
           />
           <div></div>
           <span
@@ -178,7 +179,12 @@ function Filter({
         </div>
 
         <label>
-          <select onChange={(e) => setRecordsPerPage(e.target.value)}>
+          <select
+            onChange={(e) => {
+              setRecordsPerPage(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
             <option>2</option>
             <option>3</option>
             <option>4</option>

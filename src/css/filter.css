@@ -5,16 +5,16 @@
   @apply mb-[45px];
 }
 .filterSectionTitle {
-  @apply flex justify-between items-center w-full;
+  @apply flex w-full flex-wrap flex-col-reverse items-start;
 }
 .filterSectionTitle span {
   @apply font-theserif text-[22px];
 }
 .filterButtonOff {
-  @apply bg-[var(--orange)] text-white rounded-full py-[7px] px-[20px];
+  @apply bg-[var(--orange)] text-white rounded-full py-[7px] px-[20px] mb-[25px];
 }
 .filterButtonOff:disabled {
-  @apply opacity-20 cursor-default;
+  @apply hidden;
 }
 .filterCheckbox {
   @apply flex items-center text-[18px] mt-[15px];
