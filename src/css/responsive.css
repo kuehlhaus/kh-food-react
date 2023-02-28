@@ -1,4 +1,47 @@
 @media screen and (max-width: 1023px) {
+  .titleWrapper {
+    @apply bg-[url('../assets/img/PebbleSingleMobile.svg')] bg-bottom;
+  }
+
+  .titleWrapper > span {
+    @apply w-[30px] h-[30px] absolute top-0 left-0 text-[30px];
+  }
+  .titleWrapper > span a {
+    @apply block p-[30px];
+  }
+
+  .titleWrapper img.headerLogoSmall {
+    @apply w-[30px] !important;
+  }
+
+  .titleSection {
+    @apply w-auto flex justify-between mx-[15%] py-[90px];
+  }
+
+  .titleSection > div:nth-child(1) {
+    @apply flex-col items-start;
+  }
+
+  .titleSection > div:nth-child(1) > div:nth-child(1) {
+    @apply mb-[25px];
+  }
+
+  .titleSection > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) h1 {
+    @apply text-[29px];
+  }
+
+  .titleSection > div:nth-child(1) > div:nth-child(2) p {
+    @apply text-[14px];
+  }
+
+  .titleSection
+    > div:nth-child(1)
+    > div:nth-child(2)
+    > div:nth-child(1)
+    h1:after {
+    @apply h-[20px];
+  }
+
   .contentWrapper {
     @apply flex-col;
   }
@@ -44,6 +87,44 @@
   .foodspotsSection ul li div span p {
     @apply m-0;
   }
+
+  .foodspot {
+    @apply my-[10%];
+  }
+  .foodspot > div:nth-child(1) {
+    @apply justify-between;
+  }
+  .foodspot > div:nth-child(1) span {
+    @apply mr-[0] flex-col;
+  }
+  .foodspot > div:nth-child(1) span p {
+    @apply m-0;
+  }
+
+  .foodspot > div:nth-child(2) {
+    @apply flex-col-reverse mt-[15%];
+  }
+  .foodspot > div:nth-child(2) span {
+    @apply text-[20px];
+  }
+  .foodspot > div:nth-child(2) > div:nth-child(2) b {
+    @apply text-[18px];
+  }
+  .foodspot > div:nth-child(2) > div:nth-child(2) p {
+    @apply text-[16px];
+  }
+
+  .foodspot > div:nth-child(2) > div {
+    @apply w-full max-w-full !important;
+  }
+  .foodspot > div:nth-child(2) > div:nth-child(2) {
+    @apply mb-[15%];
+  }
+
+  .foodspot > div:nth-child(2) > div:nth-child(2) div a {
+    @apply text-[14px];
+  }
+
   footer {
     @apply bg-[url('../assets/img/Pebble2.svg')] h-[125px] bg-transparent bg-no-repeat bg-footer justify-center mt-[40px];
   }
@@ -53,7 +134,4 @@
   footer a {
     @apply mx-[20px];
   }
-}
-
-@media screen and (min-width: 1024px) and (max-width: 1132px) {
 }

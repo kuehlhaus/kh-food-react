@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import Filter from '../components/Filter';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import Pagination from '../components/Pagination';
 
 function Home() {
@@ -100,69 +102,79 @@ function Home() {
   });
 
   return (
-    <div className="contentWrapper">
-      <Filter
-        isFilterActive={isFilterActive}
-        filter={filter}
-        setRecordsPerPage={setRecordsPerPage}
-        setCurrentPage={setCurrentPage}
-        setFilteredArray={setFilteredArray}
-        setFilter={setFilter}
-        dataArray={dataArray}
-      />
+    <>
+      <Header />
+      <div className="contentWrapper">
+        <Filter
+          isFilterActive={isFilterActive}
+          filter={filter}
+          setRecordsPerPage={setRecordsPerPage}
+          setCurrentPage={setCurrentPage}
+          setFilteredArray={setFilteredArray}
+          setFilter={setFilter}
+          dataArray={dataArray}
+        />
 
-      <div className="foodspotsSectionWrapper">
-        <div className="foodspotsSection">
-          <h2>Foodspots</h2>
-          <ul>
-            {currentRecords.map((item, index) => {
-              return (
-                <Link to={`/foodspot/` + item.id} state={item.id} key={item.id}>
-                  <li key={index}>
-                    <span id="foodspotTitle">
-                      {item.title}
-                      <em id={'preisklasse_' + item.preisklasse}></em>
-                    </span>
-                    <i>{item.adresse}</i>
-                    <div>
-                      <span
-                        className={
-                          item.delivery ? 'delivery on' : 'delivery off'
-                        }
-                      >
-                        <p>Delivery</p>
+        <div className="foodspotsSectionWrapper">
+          <div className="foodspotsSection">
+            <h2>Foodspots</h2>
+            <ul>
+              {currentRecords.map((item, index) => {
+                return (
+                  <Link
+                    to={`/foodspot/` + item.id}
+                    state={item.id}
+                    key={item.id}
+                  >
+                    <li key={index}>
+                      <span id="foodspotTitle">
+                        {item.title}
+                        <em id={'preisklasse_' + item.preisklasse}></em>
                       </span>
-                      <span
-                        className={item.dineIn ? 'dineIn on' : 'dineIn off'}
-                      >
-                        <p>DineIn</p>
-                      </span>
-                      <span
-                        className={item.takeout ? 'takeout on' : 'takeout off'}
-                      >
-                        <p>Takeout</p>
-                      </span>
-                    </div>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
+                      <i>{item.adresse}</i>
+                      <div>
+                        <span
+                          className={
+                            item.delivery ? 'delivery on' : 'delivery off'
+                          }
+                        >
+                          <p>Delivery</p>
+                        </span>
+                        <span
+                          className={item.dineIn ? 'dineIn on' : 'dineIn off'}
+                        >
+                          <p>DineIn</p>
+                        </span>
+                        <span
+                          className={
+                            item.takeout ? 'takeout on' : 'takeout off'
+                          }
+                        >
+                          <p>Takeout</p>
+                        </span>
+                      </div>
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
 
-          <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            isFilterActive={isFilterActive}
-            recordsPerPage={recordsPerPage}
-            filteredArray={filteredArray}
-            dataArray={dataArray}
-            nPages={nPages}
-            setNPages={setNPages}
-            filter={filter}
-          />
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              isFilterActive={isFilterActive}
+              recordsPerPage={recordsPerPage}
+              filteredArray={filteredArray}
+              dataArray={dataArray}
+              nPages={nPages}
+              setNPages={setNPages}
+              filter={filter}
+            />
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

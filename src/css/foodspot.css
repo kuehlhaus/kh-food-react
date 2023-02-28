@@ -1,27 +1,62 @@
+.foodspotWrapper {
+  @apply max-w-[1915px] m-auto;
+}
 .foodspot {
-  @apply overflow-hidden bg-white shadow sm:rounded-lg lg:w-[50%] mx-auto;
+  @apply mx-[15%] my-[5%];
 }
-.foodspot-title {
-  @apply px-4 py-5 sm:px-6;
+.foodspot > div:nth-child(1) {
+  @apply flex justify-start;
 }
-.foodspot-title h1 {
-  @apply text-lg font-medium leading-6 text-gray-900;
+.foodspot > div:nth-child(1) span {
+  @apply flex items-center mr-[30px];
 }
-.foodspot-title p {
-  @apply mt-1 max-w-2xl text-sm text-gray-500;
+.foodspot > div:nth-child(1) span p {
+  @apply rounded-full border-[1.5px] border-[var(--darkgray)] px-[15px] py-[5px] italic text-[14px] ml-[15px];
 }
-.foodspot-data-section {
-  @apply border-t border-gray-200 px-4 py-5 sm:p-0;
+.foodspot > div:nth-child(1) span.on p {
+  @apply bg-[var(--darkgray)] text-[var(--white)];
 }
-.foodspot-data-section dl {
-  @apply sm:divide-y sm:divide-gray-200;
+.foodspot > div:nth-child(1) span.off p {
+  @apply bg-[var(--white)] text-[var(--darkgray)];
 }
-.foodspot-data {
-  @apply py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6;
+.foodspot > div:nth-child(1) span.delivery:before {
+  @apply content-[url('../assets/img/delivery.svg')];
 }
-.foodspot-data dt {
-  @apply text-sm font-medium text-gray-500;
+.foodspot > div:nth-child(1) span.dineIn:before {
+  @apply content-[url('../assets/img/dineIn.svg')];
 }
-.foodspot-data dd {
-  @apply mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0;
+.foodspot > div:nth-child(1) span.takeout:before {
+  @apply content-[url('../assets/img/takeout.svg')];
+}
+
+.foodspot > div:nth-child(2) {
+  @apply flex justify-between mt-[5%];
+}
+
+.foodspot > div:nth-child(2) span {
+  @apply text-[40px] mb-[20px] block;
+}
+
+.foodspot > div:nth-child(2) > div:nth-child(1) {
+  @apply max-w-[50%];
+}
+
+.foodspot > div:nth-child(2) > div:nth-child(2) {
+  @apply max-w-[45%];
+}
+.foodspot > div:nth-child(2) > div:nth-child(2) b {
+  @apply text-[20px] font-bold;
+}
+.foodspot > div:nth-child(2) > div:nth-child(2) p {
+  @apply mt-[10px];
+}
+.foodspot > div:nth-child(2) > div:nth-child(2) em {
+  @apply font-bold not-italic;
+}
+
+.foodspot > div:nth-child(2) > div:nth-child(2) div {
+  @apply mt-[20px] flex items-center;
+}
+.foodspot > div:nth-child(2) > div:nth-child(2) div a {
+  @apply ml-[20px] border-[2px] rounded-full border-[var(--darkgray)] py-[10px] px-[20px] italic;
 }

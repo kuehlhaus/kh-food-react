@@ -17,11 +17,11 @@ export default function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Header />}>
-            <Route index element={<Home />} />
-            <Route path="/foodspot/*" element={<Foodspot />} />
-            <Route path="*" element={<Error />} />
-          </Route>
+          {/* <Route path="/" element={<Header />}> */}
+          <Route index element={<Home />} />
+          <Route path="/foodspot/*" element={<Foodspot />} />
+          <Route path="*" element={<Error />} />
+          {/* </Route> */}
         </Routes>
       </BrowserRouter>
     </>
