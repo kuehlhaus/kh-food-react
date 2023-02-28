@@ -5,7 +5,7 @@
   @apply mx-[15%] my-[5%];
 }
 .foodspot > div:nth-child(1) {
-  @apply flex justify-start;
+  @apply flex justify-start items-center;
 }
 .foodspot > div:nth-child(1) span {
   @apply flex items-center mr-[30px];
@@ -20,13 +20,13 @@
   @apply bg-[var(--white)] text-[var(--darkgray)];
 }
 .foodspot > div:nth-child(1) span.delivery:before {
-  @apply content-[url('../assets/img/delivery.svg')];
+  @apply content-[url('../assets/img/delivery.svg')] h-[35px];
 }
 .foodspot > div:nth-child(1) span.dineIn:before {
-  @apply content-[url('../assets/img/dineIn.svg')];
+  @apply content-[url('../assets/img/dineIn.svg')] h-[35px];
 }
 .foodspot > div:nth-child(1) span.takeout:before {
-  @apply content-[url('../assets/img/takeout.svg')];
+  @apply content-[url('../assets/img/takeout.svg')] h-[35px];
 }
 
 .foodspot > div:nth-child(2) {
