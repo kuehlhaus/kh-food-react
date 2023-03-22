@@ -64,6 +64,8 @@ function Foodspot() {
     takeout,
   } = data.foodspot.foodspot_daten;
 
+  document.title = `${title} | kuehlhaus Food`;
+
   return (
     <>
       <Header

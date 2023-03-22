@@ -6,6 +6,8 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Pagination from '../components/Pagination';
 
+document.title = `kuehlhaus Food`;
+
 function Home() {
   let [dataArray, setDataArray] = useState([]);
 

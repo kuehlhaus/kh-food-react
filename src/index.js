@@ -6,9 +6,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Foodspot from './pages/Foodspot';
-import Header from './components/Header';
+// import Header from './components/Header';
 import Error from './pages/Error';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 const queryClient = new QueryClient();
 
