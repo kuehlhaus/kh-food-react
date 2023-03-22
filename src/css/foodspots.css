@@ -38,7 +38,7 @@
   @apply flex items-center mr-[30px];
 }
 .foodspotsSection ul li div span p {
-  @apply rounded-full border-[1.5px] border-[var(--darkgray)] px-[15px] py-[2px] italic text-[14px] ml-[15px];
+  @apply rounded-full border-[1.5px] border-[var(--darkgray)] px-[15px] py-[5px] italic text-[14px] ml-[15px];
 }
 .foodspotsSection ul li div span.on p {
   @apply bg-[var(--darkgray)] text-[var(--white)];

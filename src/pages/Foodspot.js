@@ -1,5 +1,8 @@
 import { useQuery } from 'react-query';
 import { useLocation } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import mapImg from '../assets/img/map1.svg';
 
 function Foodspot() {
   let location = useLocation();
@@ -57,49 +60,58 @@ function Foodspot() {
     offnungszeiten,
     preisklasse,
     telefon,
+    dineIn,
+    takeout,
   } = data.foodspot.foodspot_daten;
 
+  document.title = `${title} | kuehlhaus Food`;
+
   return (
-    <div className="foodspot">
-      <div className="foodspot-title">
-        <h1>{title}</h1>
-        <p>...</p>
-      </div>
-      <div className="foodspot-data-section">
-        <dl>
-          <div className="foodspot-data">
-            <dt>Bewertung</dt>
-            <dd>{bewertung}</dd>
-          </div>
-          <div className="foodspot-data">
-            <dt>Preisklasse</dt>
-            <dd>{preisklasse}</dd>
-          </div>
-          <div className="foodspot-data">
-            <dt>Delivery</dt>
-            <dd>{delivery === true ? 'true' : 'false'}</dd>
-          </div>
-          <div className="foodspot-data">
-            <dt>Adresse</dt>
-            <dd>{adresse}</dd>
-          </div>
-          <div className="foodspot-data">
-            <dt>Telefon</dt>
-            <dd>{telefon}</dd>
+    <>
+      <Header
+        title={title}
+        adresse={adresse}
+        preisklasse={preisklasse}
+        bewertung={bewertung}
+      />
+      <div className="foodspotWrapper">
+        <div className="foodspot">
+          <div>
+            <span className={delivery ? 'delivery on' : 'delivery off'}>
+              <p>Delivery</p>
+            </span>
+            <span className={dineIn ? 'dineIn on' : 'dineIn off'}>
+              <p>DineIn</p>
+            </span>
+            <span className={takeout ? 'takeout on' : 'takeout off'}>
+              <p>Takeout</p>
+            </span>
           </div>
 
-          <div className="foodspot-data">
-            <dt>Offnungszeiten</dt>
-            <dd>{offnungszeiten}</dd>
+          <div>
+            <div>
+              <span>Öffnungszeiten</span>
+              <ul>{offnungszeiten}</ul>
+            </div>
+            <div>
+              <span>Kontakt</span>
+              <b>{title}</b>
+              <p>
+                <em>Adresse:</em> {adresse}
+              </p>
+              <p>
+                <em>Telefon:</em> {telefon}
+              </p>
+              <div>
+                <img src={mapImg} alt="" />
+                <a href="#">Auf Google Maps finden</a>
+              </div>
+            </div>
           </div>
-
-          <div className="foodspot-data">
-            <dt>Maps Link</dt>
-            <dd>{mapsLink}</dd>
-          </div>
-        </dl>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

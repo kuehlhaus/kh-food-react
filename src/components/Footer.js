@@ -5,11 +5,13 @@ import Footerds from '../assets/img/Footer.svg';
 export default function Footer() {
   return (
     <footer>
-      <button>
-        <img src={Footerds} alt="" />
-      </button>
-      <Link>Impressum</Link>
-      <Link>Datenschutz</Link>
+      <div className="footer">
+        <button>
+          <img src={Footerds} alt="" />
+        </button>
+        <Link>Impressum</Link>
+        <Link>Datenschutz</Link>
+      </div>
     </footer>
   );
 }

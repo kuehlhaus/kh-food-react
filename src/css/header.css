@@ -3,18 +3,58 @@ header {
   bg-[url('/src/assets/img/headerHome.svg')] bg-no-repeat bg-center bg-fill my-0 mx-auto bg-gray-300; */
   @apply max-w-[1915px] m-auto flex justify-center;
 }
-
-.headerHome {
-  /* @apply my-0 mx-auto flex justify-end py-[30px] px-[50px]; */
+.header {
   @apply relative w-full;
 }
-.headerHome img {
+.header img.headerBg {
   @apply w-full;
 }
-
 .headerLogoSmall {
   @apply absolute top-[30px] right-[50px] w-auto !important;
 }
 .headerLogoSmallMobile {
   @apply absolute top-[10px] right-[10px] w-auto !important;
+}
+.titleWrapper {
+  @apply w-full bg-[url('../assets/img/PebbleSingle.svg')] bg-center bg-no-repeat bg-cover text-white;
+}
+.titleSection {
+  @apply w-auto flex justify-between mx-[15%] py-[120px];
+}
+.titleSection > div:nth-child(1) {
+  @apply flex items-center;
+}
+.titleSection > div:nth-child(1) > div:nth-child(1) {
+  @apply mr-[25px] min-w-[50px] h-full;
+}
+.titleSection > div:nth-child(1) > div:nth-child(1) img {
+  @apply w-full;
+}
+.titleSection > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+  @apply mb-[10px];
+}
+.titleSection > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) h1 {
+  @apply inline-block;
+}
+.titleSection
+  > div:nth-child(1)
+  > div:nth-child(2)
+  > div:nth-child(1)
+  h1:after {
+  @apply content-[''] h-[40px] bg-no-repeat bg-center bg-contain inline-block mt-[10px];
+}
+.titleSection h1.preisklasse_1:after {
+  @apply bg-[url('../assets/img/preisklasse_1_Title.svg')] w-[55px];
+}
+.titleSection h1.preisklasse_2:after {
+  @apply bg-[url('../assets/img/preisklasse_2_Title.svg')] w-[75px];
+}
+.titleSection > div:nth-child(1) > div:nth-child(2) p {
+  @apply text-[30px];
+}
+.titleSection > div:nth-child(2) {
+  @apply flex items-center h-[39px] ml-[50px];
+}
+.titleSection > div:nth-child(2) img {
+  @apply mr-[20px];
 }
