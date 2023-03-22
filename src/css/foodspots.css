@@ -1,0 +1,60 @@
+.contentWrapper {
+  @apply lg:max-w-[1915px] mx-auto flex lg:my-[100px] lg:px-[100px] px-[5%];
+}
+.foodspotsSectionWrapper {
+  @apply w-auto flex justify-center lg:max-w-[50%];
+}
+.foodspotsSection {
+  @apply w-full;
+}
+.foodspotsSection ul {
+  @apply flex flex-col;
+}
+.foodspotsSection ul a {
+  @apply lg:my-[25px] mt-[25px];
+}
+.foodspotsSection ul li {
+  @apply border-[2px] border-[var(--darkgray)] rounded-[10px] lg:py-[20px] lg:px-[70px] pt-[35px] pb-[20px] px-[20px];
+}
+.foodspotsSection ul li span#foodspotTitle {
+  @apply text-[23px] lg:text-[32px] font-bold;
+}
+.foodspotsSection ul li span#foodspotTitle em {
+  @apply ml-[30px];
+}
+.foodspotsSection ul li span#foodspotTitle em#preisklasse_1 {
+  @apply content-[url('../assets/img/preisklasse_1.svg')];
+}
+.foodspotsSection ul li span#foodspotTitle em#preisklasse_2 {
+  @apply content-[url('../assets/img/preisklasse_2.svg')];
+}
+.foodspotsSection ul li i {
+  @apply flex text-[12px] lg:text-[16px] not-italic my-[10px];
+}
+.foodspotsSection ul li div {
+  @apply flex items-center flex-wrap;
+}
+.foodspotsSection ul li div span {
+  @apply flex items-center mr-[30px];
+}
+.foodspotsSection ul li div span p {
+  @apply rounded-full border-[1.5px] border-[var(--darkgray)] px-[15px] py-[5px] italic text-[14px] ml-[15px];
+}
+.foodspotsSection ul li div span.on p {
+  @apply bg-[var(--darkgray)] text-[var(--white)];
+}
+.off {
+  @apply opacity-[0.2];
+}
+.foodspotsSection ul li div span.off p {
+  @apply bg-[var(--white)] text-[var(--darkgray)];
+}
+.foodspotsSection ul li div span.delivery:before {
+  @apply content-[url('../assets/img/delivery.svg')];
+}
+.foodspotsSection ul li div span.dineIn:before {
+  @apply content-[url('../assets/img/dineIn.svg')];
+}
+.foodspotsSection ul li div span.takeout:before {
+  @apply content-[url('../assets/img/takeout.svg')];
+}
