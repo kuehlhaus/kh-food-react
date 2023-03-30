@@ -91,38 +91,41 @@
   .foodspot {
     @apply my-[10%];
   }
-  .foodspot > div:nth-child(1) {
-    @apply justify-between;
+  .foodspot .foodspotFilterSection {
+    @apply justify-between mt-[15%];
   }
-  .foodspot > div:nth-child(1) span {
+  .foodspot .foodspotFilterSection span {
     @apply mr-[0] flex-col;
   }
-  .foodspot > div:nth-child(1) span p {
+  .foodspot .foodspotFilterSection span p {
     @apply m-0;
   }
 
-  .foodspot > div:nth-child(2) {
+  .foodspot .foodspotDescriptionSection {
     @apply flex-col-reverse mt-[15%];
   }
-  .foodspot > div:nth-child(2) span {
-    @apply text-[20px];
-  }
-  .foodspot > div:nth-child(2) > div:nth-child(2) b {
-    @apply text-[18px];
-  }
-  .foodspot > div:nth-child(2) > div:nth-child(2) p {
-    @apply text-[16px];
-  }
-
-  .foodspot > div:nth-child(2) > div {
+  .foodspot .foodspotDescriptionSection > div {
     @apply w-full max-w-full !important;
   }
-  .foodspot > div:nth-child(2) > div:nth-child(2) {
+
+  .foodspot .foodspotDescriptionSection > div:nth-child(2) {
     @apply mb-[15%];
   }
-
-  .foodspot > div:nth-child(2) > div:nth-child(2) div a {
+  .foodspot .foodspotDescriptionSection span {
+    @apply text-[20px];
+  }
+  .foodspot .foodspotDescriptionSection > div:nth-child(2) b {
+    @apply text-[18px];
+  }
+  .foodspot .foodspotDescriptionSection > div:nth-child(2) p {
+    @apply text-[16px];
+  }
+  .foodspot .foodspotDescriptionSection > div:nth-child(2) div a {
     @apply text-[14px];
+  }
+
+  .foodspot .foodspotDescriptionSection > div:nth-child(1) ul {
+    @apply text-[16px];
   }
 
   footer {

@@ -4,59 +4,73 @@
 .foodspot {
   @apply mx-[15%] my-[5%];
 }
-.foodspot > div:nth-child(1) {
+
+.foodspot .foodspotRatingSection {
+  @apply flex items-center text-[var(--orange)] text-[14px];
+}
+.foodspot .foodspotRatingSection img {
+  @apply mr-[10px];
+}
+
+.foodspot .foodspotFilterSection {
   @apply flex justify-start items-center;
 }
-.foodspot > div:nth-child(1) span {
+.foodspot .foodspotFilterSection span {
   @apply flex items-center mr-[30px];
 }
-.foodspot > div:nth-child(1) span p {
+.foodspot .foodspotFilterSection span p {
   @apply rounded-full border-[1.5px] border-[var(--darkgray)] px-[15px] py-[5px] italic text-[14px] ml-[15px];
 }
-.foodspot > div:nth-child(1) span.on p {
+.foodspot .foodspotFilterSection span.on p {
   @apply bg-[var(--darkgray)] text-[var(--white)];
 }
-.foodspot > div:nth-child(1) span.off p {
+.foodspot .foodspotFilterSection span.off p {
   @apply bg-[var(--white)] text-[var(--darkgray)];
 }
-.foodspot > div:nth-child(1) span.delivery:before {
+.foodspot .foodspotFilterSection span.delivery:before {
   @apply content-[url('../assets/img/delivery.svg')] h-[35px];
 }
-.foodspot > div:nth-child(1) span.dineIn:before {
+.foodspot .foodspotFilterSection span.dineIn:before {
   @apply content-[url('../assets/img/dineIn.svg')] h-[35px];
 }
-.foodspot > div:nth-child(1) span.takeout:before {
+.foodspot .foodspotFilterSection span.takeout:before {
   @apply content-[url('../assets/img/takeout.svg')] h-[35px];
 }
 
-.foodspot > div:nth-child(2) {
+.foodspot .foodspotDescriptionSection {
   @apply flex justify-between mt-[5%];
 }
 
-.foodspot > div:nth-child(2) span {
+.foodspot .foodspotDescriptionSection span {
   @apply text-[40px] mb-[20px] block;
 }
 
-.foodspot > div:nth-child(2) > div:nth-child(1) {
+.foodspot .foodspotDescriptionSection > div:nth-child(1) {
   @apply max-w-[50%];
 }
+.foodspot .foodspotDescriptionSection > div:nth-child(1) ul {
+  @apply list-none;
+}
+.foodspot .foodspotDescriptionSection > div:nth-child(1) ul li {
+  @apply mb-[10px];
+}
 
-.foodspot > div:nth-child(2) > div:nth-child(2) {
+.foodspot .foodspotDescriptionSection > div:nth-child(2) {
   @apply max-w-[45%];
 }
-.foodspot > div:nth-child(2) > div:nth-child(2) b {
+.foodspot .foodspotDescriptionSection > div:nth-child(2) b {
   @apply text-[20px] font-bold;
 }
-.foodspot > div:nth-child(2) > div:nth-child(2) p {
+.foodspot .foodspotDescriptionSection > div:nth-child(2) p {
   @apply mt-[10px];
 }
-.foodspot > div:nth-child(2) > div:nth-child(2) em {
+.foodspot .foodspotDescriptionSection > div:nth-child(2) em {
   @apply font-bold not-italic;
 }
 
-.foodspot > div:nth-child(2) > div:nth-child(2) div {
+.foodspot .foodspotDescriptionSection > div:nth-child(2) div {
   @apply mt-[20px] flex items-center;
 }
-.foodspot > div:nth-child(2) > div:nth-child(2) div a {
+.foodspot .foodspotDescriptionSection > div:nth-child(2) div a {
   @apply ml-[20px] border-[2px] rounded-full border-[var(--darkgray)] py-[10px] px-[20px] italic;
 }

@@ -3,6 +3,9 @@ import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import mapImg from '../assets/img/map1.svg';
+import parse from 'html-react-parser';
+import MediaQuery from 'react-responsive';
+import bewertungMobile from '../assets/img/bewertungMobile.svg';
 
 function Foodspot() {
   let location = useLocation();
@@ -52,7 +55,7 @@ function Foodspot() {
   }
 
   const { title } = data.foodspot;
-  const {
+  let {
     adresse,
     bewertung,
     delivery,
@@ -66,6 +69,10 @@ function Foodspot() {
 
   document.title = `${title} | kuehlhaus Food`;
 
+  offnungszeiten = offnungszeiten
+    .replaceAll(/p/g, 'li')
+    .replaceAll('<br />', '</li><li>');
+
   return (
     <>
       <Header
@@ -76,7 +83,13 @@ function Foodspot() {
       />
       <div className="foodspotWrapper">
         <div className="foodspot">
-          <div>
+          <MediaQuery maxWidth={1023}>
+            <div className="foodspotRatingSection">
+              <img src={bewertungMobile} alt="" />
+              <p>{bewertung}</p>
+            </div>
+          </MediaQuery>
+          <div className="foodspotFilterSection">
             <span className={delivery ? 'delivery on' : 'delivery off'}>
               <p>Delivery</p>
             </span>
@@ -88,10 +101,10 @@ function Foodspot() {
             </span>
           </div>
 
-          <div>
+          <div className="foodspotDescriptionSection">
             <div>
               <span>Öffnungszeiten</span>
-              <ul>{offnungszeiten}</ul>
+              <ul>{parse(offnungszeiten)}</ul>
             </div>
             <div>
               <span>Kontakt</span>
@@ -104,7 +117,9 @@ function Foodspot() {
               </p>
               <div>
                 <img src={mapImg} alt="" />
-                <a href="#">Auf Google Maps finden</a>
+                <a href={mapsLink} target="_blank">
+                  Auf Google Maps finden
+                </a>
               </div>
             </div>
           </div>
