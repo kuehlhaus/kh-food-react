@@ -85,7 +85,7 @@ function Home() {
   });
 
   if (isLoading) {
-    return 'Loading';
+    return '';
   }
   if (error) {
     return 'Error';

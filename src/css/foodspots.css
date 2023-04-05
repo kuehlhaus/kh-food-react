@@ -44,7 +44,7 @@
   @apply bg-[var(--darkgray)] text-[var(--white)];
 }
 .off {
-  @apply opacity-[0.2];
+  @apply opacity-50;
 }
 .foodspotsSection ul li div span.off p {
   @apply bg-[var(--white)] text-[var(--darkgray)];
