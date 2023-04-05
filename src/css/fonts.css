@@ -1,8 +1,10 @@
 @font-face {
   font-family: 'TheSerif HP4 SemiLight';
   src: url('../assets/fonts/TheSerif-HP4SeLig.woff') format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: 'TheSansOsF SemiLight';
   src: url('../assets/fonts/TheSansOsF-SemiLight.woff') format('woff');
+  font-display: swap;
 }

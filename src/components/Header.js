@@ -18,6 +18,7 @@ export default function Header(props) {
           {location.pathname === '/' ? (
             <>
               <MediaQuery maxWidth={1023}>
+                <link rel="preload" href={Pebble} as="image" />
                 <img
                   className="headerBg"
                   src={Pebble}
@@ -33,6 +34,7 @@ export default function Header(props) {
                 />
               </MediaQuery>
               <MediaQuery minWidth={1024}>
+                <link rel="preload" href={headerHome} as="image" />
                 <img className="headerBg" src={headerHome} alt="headerBg" />
                 <img
                   className="headerLogoSmall"
