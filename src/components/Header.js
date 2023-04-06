@@ -18,12 +18,29 @@ export default function Header(props) {
           {location.pathname === '/' ? (
             <>
               <MediaQuery maxWidth={1023}>
-                <img className="headerBg" src={Pebble} />
-                <img className="headerLogoSmallMobile" src={logoMobile} />
+                <link rel="preload" href={Pebble} as="image" />
+                <img
+                  className="headerBg"
+                  src={Pebble}
+                  width="1023"
+                  height="280"
+                  alt="headerBg"
+                />
+
+                <img
+                  className="headerLogoSmallMobile"
+                  src={logoMobile}
+                  alt="headerLogoSmallMobile"
+                />
               </MediaQuery>
               <MediaQuery minWidth={1024}>
-                <img className="headerBg" src={headerHome} />
-                <img className="headerLogoSmall" src={headerLogoSmall} />
+                <link rel="preload" href={headerHome} as="image" />
+                <img className="headerBg" src={headerHome} alt="headerBg" />
+                <img
+                  className="headerLogoSmall"
+                  src={headerLogoSmall}
+                  alt="headerLogoSmall"
+                />
               </MediaQuery>
             </>
           ) : location.pathname.includes('/foodspot/') ? (
