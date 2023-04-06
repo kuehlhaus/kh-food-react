@@ -85,7 +85,7 @@ function Foodspot() {
         <div className="foodspot">
           <MediaQuery maxWidth={1023}>
             <div className="foodspotRatingSection">
-              <img src={bewertungMobile} alt="" />
+              <img src={bewertungMobile} alt="bewertung" />
               <p>{bewertung}</p>
             </div>
           </MediaQuery>
@@ -116,7 +116,7 @@ function Foodspot() {
                 <em>Telefon:</em> {telefon}
               </p>
               <div>
-                <img src={mapImg} alt="" />
+                <img src={mapImg} alt="map" />
                 <a href={mapsLink} target="_blank">
                   Auf Google Maps finden
                 </a>
